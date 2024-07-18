@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 @Data
 @AllArgsConstructor
 @Slf4j
+//工具类上传文件，需要赋值以下四个属性。
 public class AliOssUtil {
 
     private String endpoint;
@@ -26,6 +27,7 @@ public class AliOssUtil {
      * @param objectName
      * @return
      */
+    //未初始化属性
     public String upload(byte[] bytes, String objectName) {
 
         // 创建OSSClient实例。

@@ -34,6 +34,7 @@ public class CommonController {
      */
     @PostMapping("/upload")
     @ApiOperation("文件上传")
+    //非查询类接口result可以不写泛型
     public Result<String> upload(MultipartFile file){
         log.info("文件上传：{}",file);
 

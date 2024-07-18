@@ -25,12 +25,15 @@ public class AutoFillAspect {
     /**
      * 切入点
      */
+    //对哪些类的哪些方法进行切入：拦截所有（*）mapper包所有的类.*，所有的方法.*,匹配所有的参数类型(..)，但是拦截力度大，
+    //缩小范围，加入annotation下带有autofiil注解的
     @Pointcut("execution(* com.sky.mapper.*.*(..)) && @annotation(com.sky.annotation.AutoFill)")
     public void autoFillPointCut(){}
 
     /**
      * 前置通知，在通知中进行公共字段的赋值
      */
+    //before注解：前置通知，固定获取参数joinpoint。
     @Before("autoFillPointCut()")
     public void autoFill(JoinPoint joinPoint){
         log.info("开始进行公共字段自动填充...");
@@ -53,6 +56,7 @@ public class AutoFillAspect {
         Long currentId = BaseContext.getCurrentId();
 
         //根据当前不同的操作类型，为对应的属性通过反射来赋值
+        //反射三要素，调用什么对象，形参是什么，返回值
         if(operationType == OperationType.INSERT){
             //为4个公共字段赋值
             try {
@@ -62,6 +66,7 @@ public class AutoFillAspect {
                 Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
 
                 //通过反射为对象属性赋值
+                //entity是object类型，没有getset方法，必须通过反射才能获得方法。
                 setCreateTime.invoke(entity,now);
                 setCreateUser.invoke(entity,currentId);
                 setUpdateTime.invoke(entity,now);

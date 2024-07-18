@@ -3,6 +3,7 @@ server:
 
 spring:
   profiles:
+    #dev开发模式，prod生产模式，多种数据源
     active: dev
   main:
     allow-circular-references: true
