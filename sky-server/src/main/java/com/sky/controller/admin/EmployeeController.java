@@ -108,7 +108,7 @@ public class EmployeeController {
      * @param id
      * @return
      */
-    //查询类操作添加泛型<>,非查询类可以不加泛型。
+    //查询类操作添加泛型<>,非查询类可以不加泛型
     @PostMapping("/status/{status}")
     @ApiOperation("启用禁用员工账号")
     public Result startOrStop(@PathVariable Integer status,Long id){
